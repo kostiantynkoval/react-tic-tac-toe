@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Game} from "./TicTacToe/Game";
 import {Link} from "react-router-dom";
+import {gridLengths} from "./TicTacToe/constants";
 
 export const GameLobby = () => {
     const [gridLength, setGridLength] = useState(3)
@@ -10,9 +11,21 @@ export const GameLobby = () => {
             <Link to="/">Back to Home</Link>
             <h2>Select grid elements size</h2>
             <form>
-                <label><input type="radio" name="grid" checked={gridLength === 3} value="3" onChange={() => setGridLength(3)}/>3</label>
-                <label><input type="radio" name="grid" checked={gridLength === 4} value="4" onChange={() => setGridLength(4)}/>4</label>
-                <label><input type="radio" name="grid" checked={gridLength === 5} value="5" onChange={() => setGridLength(5)}/>5</label>
+                {
+                    gridLengths.map(value => (
+                        <label
+                            key={value}
+                        >
+                            <input
+                                type="radio"
+                                name="grid"
+                                checked={gridLength === value}
+                                value={value}
+                                onChange={() => setGridLength(value)}/>
+                            {value}
+                        </label>
+                    ))
+                }
             </form>
             <br/>
             <hr/>
