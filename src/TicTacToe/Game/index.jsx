@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {Board} from "../Board";
 import {Info} from "../Info";
 import {initialGameState, grids} from "../constants";
@@ -13,6 +13,10 @@ export const Game = ({gridLength}) => {
     const reset = () => {
         setGameState(initialGameState);
     };
+
+    useEffect(() => {
+        reset();
+    }, [gridLength])
 console.log(gameState)
     const jumpTo = step => {
         const historySnapshot = [ ...gameState.history ];
